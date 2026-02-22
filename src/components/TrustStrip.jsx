@@ -1,3 +1,5 @@
+import { useScrollReveal } from '../hooks/useScrollReveal'
+
 const LOGOS = [
   'Memorial Health System',
   'St. Mary\'s Medical',
@@ -12,14 +14,21 @@ const LOGOS = [
 ]
 
 export default function TrustStrip() {
-  const items = [...LOGOS, ...LOGOS]
+  const items      = [...LOGOS, ...LOGOS]
+  const labelRef   = useScrollReveal({ threshold: 0.3 })
+  const marqueeRef = useScrollReveal({ threshold: 0.2 })
 
   return (
     <section className="trust-strip" aria-label="Trusted health systems">
-      <p className="trust-strip__label">
+      <p ref={labelRef} className="trust-strip__label reveal">
         Trusted by leading health systems across the country
       </p>
-      <div style={{ overflow: 'hidden', position: 'relative' }} aria-hidden="true">
+      <div
+        ref={marqueeRef}
+        className="reveal"
+        style={{ overflow: 'hidden', position: 'relative', transitionDelay: '0.12s' }}
+        aria-hidden="true"
+      >
         <div style={{
           position: 'absolute', left: 0, top: 0, bottom: 0, width: 100,
           background: 'linear-gradient(90deg, var(--bg-page), transparent)',

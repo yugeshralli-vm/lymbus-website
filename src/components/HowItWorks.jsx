@@ -18,9 +18,30 @@ const STEPS = [
   },
 ]
 
+/* Direction per step: left → center → right for visual variety */
+const STEP_CLASSES = ['reveal-left', 'reveal', 'reveal-right']
+
+/* Each step is its own component so hooks are at the top level */
+function Step({ s, i }) {
+  const stepRef = useScrollReveal({ threshold: 0.12 })
+
+  return (
+    <div
+      ref={stepRef}
+      className={`hiw-step ${STEP_CLASSES[i]}`}
+      style={{ transitionDelay: `${i * 0.18}s` }}
+    >
+      <div className="hiw-step__num">{s.num}</div>
+      <div>
+        <h3 className="hiw-step__title">{s.title}</h3>
+        <p className="hiw-step__desc">{s.desc}</p>
+      </div>
+    </div>
+  )
+}
+
 export default function HowItWorks() {
   const headerRef = useScrollReveal()
-  const stepsRef  = useScrollReveal({ threshold: 0.08 })
 
   return (
     <section className="how-it-works">
@@ -38,19 +59,9 @@ export default function HowItWorks() {
           </p>
         </div>
 
-        <div ref={stepsRef} className="hiw__steps reveal">
+        <div className="hiw__steps">
           {STEPS.map((s, i) => (
-            <div
-              className="hiw-step"
-              key={i}
-              style={{ transitionDelay: `${i * 0.14}s` }}
-            >
-              <div className="hiw-step__num">{s.num}</div>
-              <div>
-                <h3 className="hiw-step__title">{s.title}</h3>
-                <p className="hiw-step__desc">{s.desc}</p>
-              </div>
-            </div>
+            <Step key={i} s={s} i={i} />
           ))}
         </div>
       </div>

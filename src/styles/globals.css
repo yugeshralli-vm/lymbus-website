@@ -159,6 +159,13 @@ input, textarea { font-family: inherit; }
 }
 .reveal-right.visible { opacity: 1; transform: translateX(0); }
 
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.94) translateY(16px);
+  transition: opacity 0.65s var(--ease-out), transform 0.65s var(--ease-spring);
+}
+.reveal-scale.visible { opacity: 1; transform: scale(1) translateY(0); }
+
 .delay-1 { transition-delay: 0.08s; }
 .delay-2 { transition-delay: 0.16s; }
 .delay-3 { transition-delay: 0.24s; }

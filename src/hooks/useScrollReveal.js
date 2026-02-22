@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export function useScrollReveal(options = {}) {
   const ref = useRef(null)
@@ -27,6 +27,32 @@ export function useScrollReveal(options = {}) {
   }, [options.threshold, options.rootMargin, options.repeat])
 
   return ref
+}
+
+/* Returns [ref, triggered] — triggers once when element enters viewport.
+   Use this to fire one-shot effects (e.g. count-up) on scroll. */
+export function useScrollTriggered(options = {}) {
+  const ref = useRef(null)
+  const [triggered, setTriggered] = useState(false)
+
+  useEffect(() => {
+    const el = ref.current
+    if (!el || triggered) return
+
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setTriggered(true)
+          obs.unobserve(el)
+        }
+      },
+      { threshold: options.threshold ?? 0.4 }
+    )
+    obs.observe(el)
+    return () => obs.disconnect()
+  }, [options.threshold, triggered])
+
+  return [ref, triggered]
 }
 
 export function useCountUp(target, duration = 2000, trigger = false) {

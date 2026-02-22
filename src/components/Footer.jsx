@@ -1,3 +1,5 @@
+import { useScrollReveal } from '../hooks/useScrollReveal'
+
 const COLS = [
   {
     title: 'Platform',
@@ -13,13 +15,32 @@ const COLS = [
   },
 ]
 
+/* Each link column is its own component so the hook call is at the top level */
+function FooterCol({ col, i }) {
+  const colRef = useScrollReveal({ threshold: 0.15 })
+
+  return (
+    <div ref={colRef} className="reveal" style={{ transitionDelay: `${0.1 + i * 0.1}s` }}>
+      <h3 className="footer__col-title">{col.title}</h3>
+      <ul className="footer__links">
+        {col.links.map(l => (
+          <li key={l}><a href="#" className="footer__link">{l}</a></li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
 export default function Footer() {
+  const brandRef  = useScrollReveal({ threshold: 0.15 })
+  const bottomRef = useScrollReveal({ threshold: 0.1 })
+
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer__main">
           {/* Brand */}
-          <div className="footer__brand">
+          <div ref={brandRef} className="footer__brand reveal-left">
             <div className="footer__logo">
               <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
                 <rect width="32" height="32" rx="8" fill="rgba(55,77,234,0.2)"/>
@@ -45,19 +66,12 @@ export default function Footer() {
             </div>
           </div>
 
-          {COLS.map(col => (
-            <div key={col.title}>
-              <h3 className="footer__col-title">{col.title}</h3>
-              <ul className="footer__links">
-                {col.links.map(l => (
-                  <li key={l}><a href="#" className="footer__link">{l}</a></li>
-                ))}
-              </ul>
-            </div>
+          {COLS.map((col, i) => (
+            <FooterCol key={col.title} col={col} i={i} />
           ))}
         </div>
 
-        <div className="footer__bottom">
+        <div ref={bottomRef} className="footer__bottom reveal" style={{ transitionDelay: '0.3s' }}>
           <p className="footer__copy">© {new Date().getFullYear()} Lymbus Health, Inc. All rights reserved.</p>
           <div className="footer__compliance">
             {['HIPAA', 'SOC 2', 'HITRUST'].map(b => (

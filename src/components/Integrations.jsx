@@ -15,9 +15,28 @@ const INTEGRATIONS = [
   { name: '40+ More',        type: 'Request yours', emoji: '+', more: true },
 ]
 
+/* Each item is its own component so useScrollReveal is called at the top level */
+function IntegrationItem({ item, i }) {
+  const itemRef = useScrollReveal({ threshold: 0.05 })
+
+  return (
+    <div
+      ref={itemRef}
+      className={`integration-item reveal-scale${item.more ? ' integrations__more' : ''}`}
+      style={{ transitionDelay: `${i * 0.04}s` }}
+      aria-label={`${item.name} — ${item.type}`}
+    >
+      <div className="integration-item__icon" aria-hidden="true">
+        {item.emoji}
+      </div>
+      <div className="integration-item__name">{item.name}</div>
+      <div className="integration-item__type">{item.type}</div>
+    </div>
+  )
+}
+
 export default function Integrations() {
   const headerRef = useScrollReveal()
-  const gridRef   = useScrollReveal({ threshold: 0.08 })
 
   return (
     <section className="integrations" id="solutions">
@@ -34,20 +53,9 @@ export default function Integrations() {
           </p>
         </div>
 
-        <div ref={gridRef} className="integrations__grid reveal">
+        <div className="integrations__grid">
           {INTEGRATIONS.map((item, i) => (
-            <div
-              className={`integration-item${item.more ? ' integrations__more' : ''}`}
-              key={i}
-              style={{ transitionDelay: `${i * 0.04}s` }}
-              aria-label={`${item.name} — ${item.type}`}
-            >
-              <div className="integration-item__icon" aria-hidden="true">
-                {item.emoji}
-              </div>
-              <div className="integration-item__name">{item.name}</div>
-              <div className="integration-item__type">{item.type}</div>
-            </div>
+            <IntegrationItem key={i} item={item} i={i} />
           ))}
         </div>
 
