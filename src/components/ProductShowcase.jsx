@@ -96,8 +96,8 @@ export default function ProductShowcase() {
             <div style={{ transform: `translateY(${headerY}px)` }}>
               <span className="eyebrow"><span className="eyebrow-dot" />Product Tour</span>
               <h2 className="section-title">
-                Your complete<br />
-                <em>patient intelligence hub.</em>
+                <span className="reveal-text-mask"><span className="reveal-text-mask-inner">Your complete</span></span><br />
+                <span className="reveal-text-mask" style={{ animationDelay: '0.1s' }}><em className="reveal-text-mask-inner delay-1">patient intelligence hub.</em></span>
               </h2>
               <p className="section-sub">
                 Everything your team needs to understand, act on, and continuously
@@ -306,7 +306,7 @@ export default function ProductShowcase() {
           </div>
 
           {/* Callout cards */}
-          <div className="showcase__callouts" style={{ position: 'relative', zIndex: 20, marginTop: '-80px' }}>
+          <div className="showcase__callouts" style={{ position: 'relative', zIndex: 20, marginTop: '40px' }}>
             {CALLOUTS.map((c, i) => {
               const startP = 0.1 + (i * 0.15)
               const endP = startP + 0.25

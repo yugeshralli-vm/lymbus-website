@@ -276,6 +276,24 @@ textarea {
   transform: translateY(0);
 }
 
+.reveal-text-mask {
+  overflow: hidden;
+  display: inline-flex;
+  vertical-align: top;
+}
+
+.reveal-text-mask-inner {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.reveal-text-mask.visible .reveal-text-mask-inner,
+.reveal.visible .reveal-text-mask-inner {
+  transform: translateY(0);
+}
+
 .reveal-left {
   opacity: 0;
   transform: translateX(-36px);

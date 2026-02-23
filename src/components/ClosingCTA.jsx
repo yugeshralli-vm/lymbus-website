@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
 export default function ClosingCTA() {
-  const [email, setEmail]       = useState('')
+  const [email, setEmail] = useState('')
   const [submitted, setSubmitted] = useState(false)
   const ref = useScrollReveal()
 
@@ -24,8 +24,8 @@ export default function ClosingCTA() {
           </span>
 
           <h2 className="closing-cta__title">
-            Ready to hear what your<br />
-            patients are really saying?
+            <span className="reveal-text-mask"><span className="reveal-text-mask-inner">Ready to hear what your</span></span><br />
+            <span className="reveal-text-mask" style={{ animationDelay: '0.1s' }}><em className="reveal-text-mask-inner delay-1">patients are really saying?</em></span>
           </h2>
 
           <p className="closing-cta__sub">
@@ -67,7 +67,7 @@ export default function ClosingCTA() {
 
           <div className="closing-cta__actions">
             <a href="#platform" className="btn btn-outline-white btn-sm">Explore the Platform</a>
-            <a href="#"         className="btn btn-outline-white btn-sm">Speak to an Expert</a>
+            <a href="#" className="btn btn-outline-white btn-sm">Speak to an Expert</a>
           </div>
         </div>
       </div>

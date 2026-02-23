@@ -47,11 +47,11 @@ export default function HowItWorks() {
     <section className="how-it-works">
       <div className="container">
         <div ref={headerRef} className="section-header reveal">
-          <span className="eyebrow"><span className="eyebrow-dot"/>How It Works</span>
+          <span className="eyebrow"><span className="eyebrow-dot" />How It Works</span>
           <h2 className="section-title">
-            From feedback to action
+            <span className="reveal-text-mask"><span className="reveal-text-mask-inner">From feedback to action</span></span>
             <br />
-            <em>in three steps.</em>
+            <span className="reveal-text-mask" style={{ animationDelay: '0.1s' }}><em className="reveal-text-mask-inner delay-1">in three steps.</em></span>
           </h2>
           <p className="section-sub">
             Most platforms stop at reports. Lymbus AI closes the full loop —

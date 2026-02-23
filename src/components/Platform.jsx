@@ -212,9 +212,9 @@ export default function Platform() {
           <div className="platform__header">
             <span className="eyebrow"><span className="eyebrow-dot" />The Platform</span>
             <h2 className="section-title platform__title">
-              One intelligent platform.
+              <span className="reveal-text-mask"><span className="reveal-text-mask-inner">One intelligent platform.</span></span>
               <br />
-              <em>Every patient touchpoint.</em>
+              <span className="reveal-text-mask" style={{ animationDelay: '0.1s' }}><em className="reveal-text-mask-inner delay-1">Every patient touchpoint.</em></span>
             </h2>
             <p className="section-sub platform__sub">
               From the moment a patient is discharged to the moment your team acts —

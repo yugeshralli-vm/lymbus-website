@@ -34,11 +34,11 @@ export default function Testimonials() {
     <section className="testimonials" id="resources">
       <div className="container">
         <div ref={headerRef} className="section-header reveal">
-          <span className="eyebrow"><span className="eyebrow-dot"/>Customer Stories</span>
+          <span className="eyebrow"><span className="eyebrow-dot" />Customer Stories</span>
           <h2 className="section-title">
-            Trusted by healthcare leaders
+            <span className="reveal-text-mask"><span className="reveal-text-mask-inner">Trusted by healthcare leaders</span></span>
             <br />
-            <em>who demand more.</em>
+            <span className="reveal-text-mask" style={{ animationDelay: '0.1s' }}><em className="reveal-text-mask-inner delay-1">who demand more.</em></span>
           </h2>
         </div>
 
@@ -58,7 +58,7 @@ export default function Testimonials() {
 
               <span className="result-badge">
                 <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor">
-                  <path d="M5 1l1.2 3.2H10L7 6.4l1.2 3.2L5 7.6 1.8 9.6 3 6.4.1 4.2H3.8L5 1z"/>
+                  <path d="M5 1l1.2 3.2H10L7 6.4l1.2 3.2L5 7.6 1.8 9.6 3 6.4.1 4.2H3.8L5 1z" />
                 </svg>
                 {t.result}
               </span>
